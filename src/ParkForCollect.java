@@ -35,7 +35,7 @@ public class ParkForCollect {
                 //.forEach(System.out::println);
                 .collect(Collectors.toList());
 
-        resultList.forEach(System.out::println);
+        resultList.forEach(System.out::println );
 
     }
 }

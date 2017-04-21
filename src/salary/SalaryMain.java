@@ -25,8 +25,11 @@ public class SalaryMain {
                     .mapToInt(x -> x.getSalary())
                     //.peek(System.out::println)
                     .average();
-
-        System.out.printf("1. 1985~1999년도 평균 연봉은 %.2f달러입니다.\n\n", averageIn1900s.getAsDouble());
+        if (averageIn1900s.isPresent()) {
+            System.out.printf("1. 1985~1999년도 평균 연봉은 %.2f달러입니다.\n\n", averageIn1900s.getAsDouble());
+        } else {
+            System.out.println("data가 없습니다.");
+        }
 
         // 2. 전체 레코드의 평균 연봉
         OptionalDouble totalAverage =
@@ -76,7 +79,7 @@ public class SalaryMain {
                 list.stream()
                         .sorted((x, y) -> y.getSalary() - x.getSalary())
                         .limit(10)
-                        .mapToInt(x -> x.getSalary())
+                        .mapToInt(Salaries::getSalary)  // 메소드화
                         .average();
 
         System.out.printf("6. 최상위 연봉자 10명의 평균은 %.2f 달러입니다.\n\n", averageSalaryOfBest10Salaries.getAsDouble());
